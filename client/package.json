@@ -1,0 +1,11 @@
+{
+  "name": "runpod-ernie-pod-client",
+  "version": "1.0.0",
+  "description": "Node CLI client for ERNIE-Image-Turbo running on a RunPod Pod.",
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "batch": "node scripts/generate-batch.mjs"
+  },
+  "engines": { "node": ">=18" }
+}

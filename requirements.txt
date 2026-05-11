@@ -1,0 +1,22 @@
+# Python deps for the ERNIE-Image-Turbo Pod server.
+# PyTorch comes from the RunPod base template — do NOT pip install torch here.
+
+# Diffusers from git+main (ErnieImagePipeline is recent, only in main right now)
+diffusers @ git+https://github.com/huggingface/diffusers
+transformers>=4.45.0
+accelerate>=0.34.0
+safetensors>=0.4.5
+huggingface_hub>=0.25.0
+sentencepiece>=0.2.0
+protobuf>=3.20.0
+
+# HTTP server
+fastapi>=0.110.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.0.0
+
+# Image I/O
+Pillow>=10.0.0
+
+# Faster HF downloads
+hf_transfer>=0.1.0
