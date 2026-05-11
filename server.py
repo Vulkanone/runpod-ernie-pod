@@ -81,10 +81,9 @@ async def lifespan(app: FastAPI):
             kwargs["token"] = HF_TOKEN
         pipe = ErnieImagePipeline.from_pretrained(MODEL_ID, **kwargs).to("cuda")
         pipe.set_progress_bar_config(disable=True)
-        try:
-            pipe.enable_attention_slicing()
-        except Exception:
-            pass
+        # NO attention_slicing on A40 — slows inference 20-30% with no benefit
+        # (we have 48GB VRAM, no OOM risk for 8B model at 1408×768).
+        # Only enable on GPUs with <16GB VRAM if you ever switch.
         state["pipe"] = pipe
         state["load_ms"] = int((time.time() - t0) * 1000)
         print(f"[server] ✓ Model ready in {state['load_ms']/1000:.1f}s — ready to serve", flush=True)
